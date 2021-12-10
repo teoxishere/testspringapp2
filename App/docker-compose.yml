@@ -1,19 +1,19 @@
 version: "3"
 services:
   ui:
-    build: ./ui
+    build: /App/ui
     ports: 
       -  "80:80"
   users:
-    build: ./user-administration
+    build: /App/user-administration
     ports: 
       -  "8200:8200"
   trading: 
-    build: ./fx-trading
+    build: /App/fx-trading
     ports:
       - "8210:8210"
   quote:
-    build: ./quote-service
+    build: /App/quote-service
     ports:
       - "8220:8220"
   db:
@@ -22,8 +22,8 @@ services:
         POSTGRES_PASSWORD: "admin"
     volumes:
         - postgres-db:/var/lib/postgresql/data
-        - ./fx-trading/database_setup/db_setup.sql:/docker-entrypoint-initdb.d/1.sql
-        - ./user-administration/database_setup/db_setup.sql:/docker-entrypoint-initdb.d/2.sql
+        - /home/teodor_chi/testspringapp2/App/fx-trading/database_setup/db_setup.sql:/docker-entrypoint-initdb.d/1.sql
+        - /home/teodor_chi/testspringapp2/App/user-administration/database_setup/db_setup.sql:/docker-entrypoint-initdb.d/2.sql
 
     ports:
       - "54320:5432"
